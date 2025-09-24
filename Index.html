@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fei-Fei Li | Portfolio</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* CSS Variables for consistent theming */
+        :root {
+            --primary-red: #8c1515;
+            --secondary-red: #b1040e;
+            --light-red: #c83737;
+            --accent-red: rgba(140, 21, 21, 0.1);
+            --text-primary: #2c2c2c;
+            --text-secondary: #666;
+            --text-muted: #888;
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #f4f4f4;
+            --border-light: #e9ecef;
+            --border-medium: #dee2e6;
+            --shadow-sm: 0 2px 4px rgba(0,0,0,0.06);
+            --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+            --shadow-lg: 0 8px 24px rgba(0,0,0,0.1);
+            --radius-sm: 6px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background-color: var(--bg-tertiary);
+            font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .wrapper {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        main {
+            flex-grow: 1;
+        }
+
+        /* Enhanced Header */
+        #header {
+            background: var(--bg-primary);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-light);
+            padding: 16px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: var(--shadow-sm);
+        }
+
+        #header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        #header .site-name a {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--primary-red);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        #header .site-name a:hover {
+            color: var(--secondary-red);
+        }
+
+        #header .main-nav ul {
+            display: flex;
+            list-style: none;
+            gap: 8px;
+        }
+
+        #header .main-nav ul li a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            padding: 8px 16px;
+            border-radius: var(--radius-sm);
+            transition: var(--transition);
+        }
+
+        #header .main-nav ul li a:hover {
+            background-color: var(--accent-red);
+            color: var(--primary-red);
+        }
+
+        /* Enhanced Masthead */
+        #masthead {
+            background: linear-gradient(135deg, var(--primary-red) 0%, var(--secondary-red) 100%), 
+                        url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80');
+            background-size: cover;
+            background-position: center;
+            background-blend-mode: overlay;
+            color: white;
+            padding: 120px 0 140px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #masthead::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 50%, rgba(255,255,255,0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 80%, rgba(255,255,255,0.05) 0%, transparent 50%);
+            opacity: 0.6;
+        }
+
+        #masthead .container {
+            display: flex;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        #masthead .image-holder {
+            position: relative;
+        }
+
+        #masthead .image-holder::before {
+            content: '';
+            position: absolute;
+            top: -12px;
+            left: -12px;
+            right: -12px;
+            bottom: -12px;
+            background: linear-gradient(45deg, rgba(255,255,255,0.4), rgba(255,255,255,0.2));
+            border-radius: 50%;
+            z-index: -1;
+            box-shadow: 0 0 30px rgba(255,255,255,0.3);
+        }
+
+        #masthead .image-holder img {
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            border: 6px solid rgba(255,255,255,0.9);
+            object-fit: cover;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2), 0 0 0 3px rgba(255,255,255,0.1);
+            transition: var(--transition);
+        }
+
+        #masthead .image-holder img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.25), 0 0 0 6px rgba(255,255,255,0.2);
+        }
+
+        #masthead .nameAndTitle {
+            margin-left: 60px;
+        }
+
+        #masthead h1 {
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            letter-spacing: -0.02em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        #masthead h2 {
+            font-size: 1.4rem;
+            font-weight: 400;
+            margin-bottom: 12px;
+            opacity: 0.95;
+            border-bottom: 2px solid rgba(255,255,255,0.4);
+            padding-bottom: 12px;
+            display: inline-block;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+        }
+
+        #masthead h3 {
+            font-size: 1.2rem;
+            font-weight: 500;
+            opacity: 0.9;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+        }
+
+        #masthead h3::before {
+            content: '📍';
+            font-size: 1rem;
+        }
+
+        /* Enhanced Tabbed Layout */
+        #tabbedLayoutContainer {
+            max-width: 1200px;
+            margin: -60px auto 40px;
+            padding: 0 24px;
+            position: relative;
+            z-index: 10;
+        }
+
+        #tabbedLayoutContainer input[type="radio"] {
+            display: none;
+        }
+
+        .tab-labels {
+            display: flex;
+            background: var(--bg-primary);
+            border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+            box-shadow: var(--shadow-md);
+            overflow: hidden;
+        }
+
+        #tabbedLayoutContainer label {
+            flex: 1;
+            padding: 20px 24px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            background: var(--bg-secondary);
+            border: none;
+            text-align: center;
+            transition: var(--transition);
+            position: relative;
+            color: var(--text-secondary);
+        }
+
+        #tabbedLayoutContainer label:hover {
+            background: var(--accent-red);
+            color: var(--primary-red);
+        }
+
+        #tabbedLayoutContainer label::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--primary-red);
+            transform: scaleX(0);
+            transition: var(--transition);
+        }
+
+        #tabbedLayoutContainer input[type="radio"]:checked + label {
+            background: var(--bg-primary);
+            color: var(--primary-red);
+            font-weight: 600;
+        }
+
+        #tabbedLayoutContainer input[type="radio"]:checked + label::before {
+            transform: scaleX(1);
+        }
+
+        .tab-content-wrapper {
+            background: var(--bg-primary);
+            border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+            box-shadow: var(--shadow-md);
+            min-height: 600px;
+        }
+
+        .tab-pane {
+            display: none;
+            padding: 40px;
+            animation: fadeInUp 0.5s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        #tab1:checked ~ .tab-content-wrapper #bio-content,
+        #tab2:checked ~ .tab-content-wrapper #projects-content,
+        #tab3:checked ~ .tab-content-wrapper #publications-content {
+            display: flex;
+            gap: 40px;
+        }
+
+        .main-column {
+            flex: 2.5;
+        }
+
+        .side-bar {
+            flex: 1;
+        }
+
+        /* Enhanced Content Sections */
+        .content-section {
+            background: var(--bg-primary);
+            padding: 32px;
+            margin-bottom: 24px;
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+        }
+
+        .content-section:hover {
+            box-shadow: var(--shadow-md);
+            transform: translateY(-2px);
+        }
+
+        .content-section h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--primary-red);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .content-section h3::before {
+            content: '';
+            width: 4px;
+            height: 24px;
+            background: linear-gradient(135deg, var(--primary-red), var(--secondary-red));
+            border-radius: 2px;
+        }
+
+        .content-section hr {
+            display: none;
+        }
+
+        .section-listing {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .section-listing li {
+            padding: 16px 0;
+            border-bottom: 1px solid var(--border-light);
+            transition: var(--transition);
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .section-listing li:last-child {
+            border-bottom: none;
+        }
+
+        .section-listing li::before {
+            content: '▶';
+            color: var(--primary-red);
+            font-size: 0.8rem;
+            margin-top: 4px;
+            flex-shrink: 0;
+        }
+
+        .section-listing li:hover {
+            background: var(--accent-red);
+            margin: 0 -16px;
+            padding: 16px;
+            border-radius: var(--radius-sm);
+        }
+
+        .section-listing a {
+            text-decoration: none;
+            color: var(--primary-red);
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .section-listing a:hover {
+            color: var(--secondary-red);
+        }
+
+        /* Enhanced Project Items */
+        .project-item {
+            padding: 32px;
+            margin-bottom: 32px;
+            background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-red), var(--secondary-red));
+        }
+
+        .project-item:hover {
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-4px);
+        }
+
+        .project-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .project-item h4 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--primary-red);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .project-item h4::before {
+            content: '🚀';
+            font-size: 1.2rem;
+        }
+
+        .project-details {
+            background: var(--accent-red);
+            padding: 12px 16px;
+            border-radius: var(--radius-sm);
+            font-size: 0.9rem;
+            color: var(--primary-red);
+            font-weight: 500;
+            margin: -8px 0 16px;
+            border-left: 3px solid var(--primary-red);
+        }
+
+        /* Enhanced Publications */
+        .publication-list li {
+            background: var(--bg-secondary);
+            padding: 24px;
+            margin-bottom: 20px;
+            border-radius: var(--radius-md);
+            border-left: 4px solid var(--primary-red);
+            transition: var(--transition);
+        }
+
+        .publication-list li:hover {
+            box-shadow: var(--shadow-md);
+            transform: translateX(4px);
+        }
+
+        .publication-list .title {
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: var(--primary-red);
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .publication-list .authors {
+            color: var(--text-secondary);
+            font-weight: 500;
+            margin-bottom: 4px;
+        }
+
+        .publication-list .details {
+            font-style: italic;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Enhanced Contact Info */
+        .contact-info {
+            background: linear-gradient(135deg, var(--primary-red) 0%, var(--secondary-red) 100%);
+            color: white !important;
+        }
+
+        .contact-info h3 {
+            color: white !important;
+        }
+
+        .contact-info h3::before {
+            background: white !important;
+        }
+
+        .contact-info a {
+            color: white !important;
+            font-weight: 500;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .contact-info a:hover {
+            color: rgba(255,255,255,0.8) !important;
+        }
+
+        .contact-info p strong {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        /* Enhanced Links Section */
+        .links .section-listing li::before {
+            content: '🔗';
+        }
+
+        /* Enhanced Footer */
+        #footerContent {
+            background: linear-gradient(135deg, var(--text-primary) 0%, #1a1a1a 100%);
+            color: white;
+            text-align: center;
+            padding: 40px 0;
+            margin-top: 60px;
+        }
+
+        /* Responsive Enhancements */
+        @media(max-width: 992px) {
+            .container, #tabbedLayoutContainer {
+                padding: 0 20px;
+            }
+            
+            #masthead {
+                padding: 60px 0;
+            }
+            
+            #masthead .container {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            #masthead .nameAndTitle {
+                margin-left: 0;
+                margin-top: 32px;
+            }
+            
+            #masthead h1 {
+                font-size: 2.5rem;
+            }
+
+            .tab-pane {
+                padding: 24px;
+            }
+
+            #tab1:checked ~ .tab-content-wrapper #bio-content,
+            #tab2:checked ~ .tab-content-wrapper #projects-content,
+            #tab3:checked ~ .tab-content-wrapper #publications-content {
+                flex-direction: column;
+                gap: 24px;
+            }
+        }
+
+        @media(max-width: 768px) {
+            #header .container {
+                flex-direction: column;
+                gap: 16px;
+            }
+
+            .tab-labels {
+                flex-direction: column;
+            }
+
+            #tabbedLayoutContainer label {
+                border-radius: 0;
+            }
+
+            .content-section {
+                padding: 24px;
+            }
+
+            .project-item {
+                padding: 24px;
+            }
+
+            #masthead .image-holder img {
+                width: 150px;
+                height: 150px;
+            }
+        }
+
+        /* Loading Animation */
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        /* Scroll Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeIn 0.6s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-tertiary);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-red);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--secondary-red);
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <header id="header">
+            <div class="container">
+                <div class="site-name">
+                    <a href="#" style="font-size: 2rem; font-weight: 700;">Portfolio</a>
+                </div>
+                <nav class="main-nav">
+                    <ul>
+                        <li><a href="#bio">About</a></li>
+                        <li><a href="#projects">Projects</a></li>
+                        <li><a href="#publications">Publications</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+        <main id="bodyContent">
+            <section id="masthead">
+                <div class="container">
+                    <div class="image-holder">
+                        <img src="data:image/webp;base64,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" alt="Fei-Fei Li">
+                    </div>
+                    <div class="nameAndTitle">
+                        <h1>Fei-Fei Li</h1>
+                        <h2>Professor of Computer Science — Stanford University</h2>
+                        <h3>Stanford, CA</h3>
+                    </div>
+                </div>
+            </section>
+
+            <section id="tabbedLayoutContainer">
+                <input type="radio" name="tabs" id="tab1" checked>
+                <input type="radio" name="tabs" id="tab2">
+                <input type="radio" name="tabs" id="tab3">
+                
+                <div class="tab-labels">
+                    <label for="tab1">📊 Bio</label>
+                    <label for="tab2">🚀 Projects</label>
+                    <label for="tab3">📚 Publications</label>
+                </div>
+
+                <div class="tab-content-wrapper">
+                    <div id="bio-content" class="tab-pane">
+                        <div class="main-column">
+                            <div class="content-section">
+                                <h3>About Me</h3>
+                                 <p>I am a Professor in the Computer Science Department at Stanford University[cite: 220]. My work focuses on building intelligent systems that can understand the visual world.  My research is centered on computer vision, cognitive neuroscience, and computational neuroscience[cite: 271, 274].  I hold a Ph.D. in Electrical Engineering from the California Institute of Technology[cite: 218].</p>
+                            </div>
+
+                            <div class="content-section">
+                                <h3>Education</h3>
+                                <ul class="section-listing">
+                                     <li><strong>Ph.D.</strong> — California Institute of Technology, Electrical Engineering (2001-2005) [cite: 218]</li>
+                                     <li><strong>M.S.</strong> — California Institute of Technology, Electrical Engineering (2000-2001) [cite: 218]</li>
+                                     <li><strong>B.A.</strong> — Princeton University, Physics (1995-1999) [cite: 218]</li>
+                                </ul>
+                            </div>
+
+                            <div class="content-section">
+                                <h3>Research Interests</h3>
+                                <ul class="section-listing">
+                                     <li>Computer Vision and Image Understanding [cite: 271]</li>
+                                     <li>Machine Learning Research [cite: 273]</li>
+                                     <li>Human Vision and Cognitive Psychology [cite: 274]</li>
+                                     <li>Large-scale data and modeling in computer vision [cite: 296]</li>
+                                </ul>
+                            </div>
+
+                            <div class="content-section">
+                                <h3>Awards & Activities</h3>
+                                <ul class="section-listing">
+                                     <li><strong>Alfred P. Sloan Fellowship</strong> — A prestigious fellowship awarded to the "best scholars in [the current] generation" [cite: 234]</li>
+                                     <li><strong>Best Paper Honorable Mention</strong> — IEEE Conference on Computer Vision and Pattern Recognition (CVPR) [cite: 235]</li>
+                                     <li><strong>NSF CAREER Award</strong> [cite: 237]</li>
+                                     <li><strong>Microsoft Research New Faculty Fellowship</strong> — Awarded to "the best new professors in computing disciplines today." [cite: 240, 241]</li>
+                                     <li><strong>1st Place</strong> — Semantic Robot Vision Challenge Software League [cite: 239]</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="side-bar">
+                            <div class="content-section contact-info">
+                                <h3>Contact</h3>
+                                <p><strong>Email</strong><br><a href="mailto:feifeili@cs.stanford.edu">feifeili@cs.stanford.edu</a></p>
+                            </div>
+                            
+                            <div class="content-section links">
+                                <h3>Links</h3>
+                                <ul class="section-listing">
+                                    <li><a href="http://vision.stanford.edu" target="_blank">Website</a></li>
+                                    <li><a href="#">LinkedIn Profile</a></li>
+                                    <li><a href="#">Google Scholar</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="projects-content" class="tab-pane">
+                        <div class="main-column">
+                            <div class="content-section">
+                                <h3>Key Projects & Research</h3>
+                                <div class="project-item">
+                                    <h4>ImageNet Large Scale Visual Recognition Challenge</h4>
+                                     <div class="project-details">Co-organizer · 2010, 2011 [cite: 262]</div>
+                                     <p>Co-organized an internationally recognized computer vision competition to advance research in large-scale visual recognition[cite: 262].  The project involved building a multi-million image ontology via crowd-sourcing from the internet[cite: 313].</p>
+                                </div>
+                                <div class="project-item">
+                                    <h4>Unsupervised Learning of Human Action Categories</h4>
+                                     <div class="project-details">Carnegie Mellon University · 2006 [cite: 328]</div>
+                                     <p>Presented research on a framework for unsupervised learning of human action categories using a spatial-temporal word approach[cite: 328].</p>
+                                </div>
+                                <div class="project-item">
+                                    <h4>Visual Recognition: Handling large-scale data</h4>
+                                     <div class="project-details">Microsoft Research · Princeton University · 2010 [cite: 298, 299]</div>
+                                     <p>Conducted research and gave invited talks on machine learning methods for handling hidden structure, high dimensionality, and large-scale data in visual recognition[cite: 298, 299, 300].</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="side-bar">
+                            <div class="content-section contact-info">
+                                <h3>Get In Touch</h3>
+                                <p><strong>Email</strong><br><a href="mailto:feifeili@cs.stanford.edu">feifeili@cs.stanford.edu</a></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="publications-content" class="tab-pane">
+                        <div class="main-column">
+                            <div class="content-section">
+                                <h3>Selected Publications & Invited Talks</h3>
+                                <ul class="section-listing publication-list">
+                                    <li>
+                                        <cite>
+                                            <span class="title">"Modeling mutual context of object and human pose in human-object interaction activities"</span>
+                                            <span class="authors">Fei-Fei Li</span>
+                                             <span class="details">Invited talk, International Conference on Machine Learning (ICML) (2011) [cite: 292]</span>
+                                        </cite>
+                                    </li>
+                                    <li>
+                                        <cite>
+                                            <span class="title">"Object Bank: a high-level image representation for complex scene understanding"</span>
+                                            <span class="authors">Fei-Fei Li</span>
+                                             <span class="details">Invited talk, ICML Workshop (2011) [cite: 293, 294]</span>
+                                        </cite>
+                                    </li>
+                                    <li>
+                                        <cite>
+                                            <span class="title">"Telling the Story of an Image"</span>
+                                            <span class="authors">Fei-Fei Li</span>
+                                             <span class="details">Google Research Center (2008) [cite: 318]</span>
+                                        </cite>
+                                    </li>
+                                    <li>
+                                        <cite>
+                                            <span class="title">"A Bayesian Framework for Unsupervised One-Shot Learning of Object Categories"</span>
+                                            <span class="authors">Fei-Fei Li</span>
+                                             <span class="details">SHAPE Seminar Series, Brown University (2004) [cite: 338, 339]</span>
+                                        </cite>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="content-section">
+                                <h3>Professional Service</h3>
+                                <ul class="section-listing">
+                                     <li><strong>Area Chair</strong> — Neural Information Processing Systems (NIPS) (2010, 2011) [cite: 250]</li>
+                                     <li><strong>Co-Organizer</strong> — ImageNet Large Scale Visual Recognition Challenge (2010, 2011) [cite: 262]</li>
+                                     <li><strong>Journal Reviewer</strong> — International Journal of Computer Vision (IJCV) [cite: 271]</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="side-bar">
+                            <div class="content-section links">
+                                <h3>Academic Links</h3>
+                                <ul class="section-listing">
+                                    <li><a href="http://vision.stanford.edu" target="_blank">Vision Lab Website</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer id="footerContent">
+            <div class="container">
+                <small>&copy; 2025 Fei-Fei Li. All Rights Reserved.</small>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Add smooth scroll behavior and fade-in animations
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add fade-in class to content sections with delay
+            const sections = document.querySelectorAll('.content-section');
+            sections.forEach((section, index) => {
+                setTimeout(() => {
+                    section.classList.add('fade-in');
+                }, index * 100);
+            });
+        });
+
+        // Add hover effects for project items
+        const projectItems = document.querySelectorAll('.project-item');
+        projectItems.forEach(item => {
+            item.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-4px) scale(1.01)';
+            });
+            
+            item.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>
